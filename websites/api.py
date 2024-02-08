@@ -9,7 +9,7 @@ def index():
     # Récupère le nom du répertoire du site à partir des arguments passés à l'API
     selected_website_name = os.path.basename(os.path.normpath(sys.argv[1])).replace(".", "_")
     # Construit le chemin vers le fichier index.html du site sélectionné
-    index_path = os.path.join(r"C:/Users/fabio/Documents/websiteGenerator/websites", selected_website_name.replace(".", "_"), "index.html")
+    index_path = os.path.join(selected_website_name.replace(".", "_"), "index.html")
     # Lit le contenu du fichier index.html
     with open(index_path, "r") as file:
         index_content = file.read()
@@ -18,10 +18,10 @@ def index():
 # Route pour servir les fichiers statiques
 @app.route('/<path:filename>')
 def serve_static(filename):
-      # Récupère le nom du répertoire du site à partir des arguments passés à l'API
+    # Récupère le nom du répertoire du site à partir des arguments passés à l'API
     selected_website_name = os.path.basename(os.path.normpath(sys.argv[1])).replace(".", "_")
     # Construit le chemin vers le répertoire des fichiers statiques du site sélectionné
-    static_dir = os.path.join(r"C:/Users/fabio/Documents/websiteGenerator/websites", selected_website_name.replace(".", "_"))
+    static_dir = os.path.join(selected_website_name.replace(".", "_"))
     # Envoie le fichier statique demandé depuis le répertoire des fichiers statiques
     return send_from_directory(static_dir, filename)
 
