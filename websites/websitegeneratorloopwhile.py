@@ -60,29 +60,29 @@ def main():
                         with open(source_file, "r") as file:
                             html_content = file.read()
                     
-                        # Dictionnaire de remplacements avec des placeholders comme clés et des chemins de clés comme valeurs
-                        replacements = {
-                            '[title]': 'title',
-                            '[body.color]': 'body.color',
-                            '[h1.background-color]': 'h1.background-color',
-                            '[h1.color]': 'h1.color',
-                            '[p.color]': 'p.color',
-                            '[h1.text]': 'h1.text',
-                            '[p.text]': 'p.text',
-                            '[img.src]': 'img.src',
-                            '[img.alt]': 'img.alt'
-                        }
+                        # Extraire tous les motifs entre crochets dans le contenu HTML
+                        index_template = re.findall(r'\[([^\]]+)\]', html_content)
 
-                        # Parcours du dictionnaire de remplacements
-                        for index_template, key_path in replacements.items():
-                            # Récupération de la valeur correspondante dans website_info
+                        # Pour chaque motif extrait
+                        for index_template in index_template:
+                            # Initialiser la valeur avec le dictionnaire `website_info`
                             value = website_info
-                            # Parcours du chemin de clés (key_path)
-                            for key in key_path.split('.'):
-                                # Récupération de la valeur de la clé actuelle dans value
-                                value = value.get(key, '')
-                            # Remplacement de l'index_template par la valeur dans le contenu HTML
-                            html_content = re.sub(re.escape(index_template), value, html_content)
+                            
+                            # Diviser le motif en étapes séparées basées sur des points
+                            keys = index_template.split('.')
+                            
+                            # Pour chaque clé dans les étapes
+                            for key in keys:
+                                # Si la valeur est un dictionnaire, mettre à jour la valeur avec la valeur associée à la clé
+                                if isinstance(value, dict):
+                                    value = value.get(key, '')  # obtenir la valeur associée à la clé ou une chaîne vide si la clé n'existe pas
+                                else:
+                                    value = ''  # Si la valeur n'est pas un dictionnaire, définir la valeur sur une chaîne vide
+                                    break  # Arrêter la boucle si la valeur n'est pas un dictionnaire
+                                
+                            # Remplacer le motif `[index_template]` dans le contenu HTML par la valeur extraite
+                            html_content = html_content.replace(f'[{index_template}]', str(value))  # Remplacer toutes les occurrences du motif dans le HTML
+
 
 
                         # Écriture du contenu modifié dans le fichier de destination
