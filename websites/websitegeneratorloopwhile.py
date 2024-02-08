@@ -60,17 +60,30 @@ def main():
                         with open(source_file, "r") as file:
                             html_content = file.read()
                     
-                        # Remplace tous les occurrences dans html_content par la valeur correspondante de dans website_info.
-                        # Si la valeur n'existe pas dans website_info, la chaîne vide est utilisée comme valeur par défaut.
-                        html_content = re.sub(r"\[title\]", website_info.get('title', ''), html_content)
-                        html_content = re.sub(r"\[body\.color\]", website_info.get('body', {}).get('color', ''), html_content)
-                        html_content = re.sub(r"\[h1\.background-color\]", website_info.get('h1', {}).get('background-color', ''), html_content)
-                        html_content = re.sub(r"\[h1\.color\]", website_info.get('h1', {}).get('color', ''), html_content)
-                        html_content = re.sub(r"\[p\.color\]", website_info.get('p', {}).get('color', ''), html_content)
-                        html_content = re.sub(r"\[h1\.text\]", website_info.get('h1', {}).get('text', ''), html_content)
-                        html_content = re.sub(r"\[p\.text\]", website_info.get('p', {}).get('text', ''), html_content)
-                        html_content = re.sub(r"\[img\.src\]", website_info.get('img', {}).get('src', ''), html_content)
-                        html_content = re.sub(r"\[img\.alt\]", website_info.get('img', {}).get('alt', ''), html_content)
+                        # Dictionnaire de remplacements avec des placeholders comme clés et des chemins de clés comme valeurs
+                        replacements = {
+                            '[title]': 'title',
+                            '[body.color]': 'body.color',
+                            '[h1.background-color]': 'h1.background-color',
+                            '[h1.color]': 'h1.color',
+                            '[p.color]': 'p.color',
+                            '[h1.text]': 'h1.text',
+                            '[p.text]': 'p.text',
+                            '[img.src]': 'img.src',
+                            '[img.alt]': 'img.alt'
+                        }
+
+                        # Parcours du dictionnaire de remplacements
+                        for index_template, key_path in replacements.items():
+                            # Récupération de la valeur correspondante dans website_info
+                            value = website_info
+                            # Parcours du chemin de clés (key_path)
+                            for key in key_path.split('.'):
+                                # Récupération de la valeur de la clé actuelle dans value
+                                value = value.get(key, '')
+                            # Remplacement de l'index_template par la valeur dans le contenu HTML
+                            html_content = re.sub(re.escape(index_template), value, html_content)
+
 
                         # Écriture du contenu modifié dans le fichier de destination
                         with open(destination_file, "w") as dest_file:
