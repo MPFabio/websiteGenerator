@@ -95,7 +95,7 @@ def main():
                     
                     valid_choice_made = True  # Met à jour la variable de contrôle
                     # Lancement de l'API Flask depuis le script
-                    api_script_path = r"C:\Users\fabio\Documents\websiteGenerator\websites\api.py"
+                    api_script_path = r"C:/Users/fabio/Documents/websiteGenerator/websites/api.py"
                     subprocess.Popen(["python", api_script_path, selected_website_name])
                 else:
                     print("Choix invalide. Veuillez réessayer.")

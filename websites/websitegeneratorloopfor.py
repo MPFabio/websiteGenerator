@@ -89,7 +89,7 @@ def main():
                         print("L'image webp n'a pas été trouvée.")
 
                     # Lancement de l'API Flask depuis le script
-                    api_script_path = r"C:\Users\fabio\Documents\websiteGenerator\websites\api.py"
+                    api_script_path = r"C:/Users/fabio/Documents/websiteGenerator/websites/api.py"
                     subprocess.Popen(["python", api_script_path, selected_website_name])
 
                 else:
