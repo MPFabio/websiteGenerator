@@ -46,7 +46,7 @@ def main():
                 os.makedirs(directory_path, exist_ok=True)
                 
                 # Chemin du fichier source à copier
-                source_file = r"C:/Users/fabio/Documents/websiteGenerator/templates/index.html"
+                source_file = os.path.join("../templates/index.html")
                 # Chemin du fichier de destination
                 destination_file = os.path.join(directory_path, "index.html")
                 
@@ -75,7 +75,7 @@ def main():
                     print("Fichier index.html copié avec succès.")
                     
                     # Copie de l'image .webp si elle existe
-                    image_source_path = os.path.join(r"C:/Users/fabio/Documents/websiteGenerator/assets", website_info.get('img', {}).get('src', ''))
+                    image_source_path = os.path.join("../assets", website_info.get('img', {}).get('src', ''))
                     if os.path.exists(image_source_path):
                         # Obtenez le nom d'origine de l'image
                         image_name = os.path.basename(image_source_path)
@@ -89,7 +89,7 @@ def main():
                         print("L'image webp n'a pas été trouvée.")
 
                     # Lancement de l'API Flask depuis le script
-                    api_script_path = r"C:/Users/fabio/Documents/websiteGenerator/websites/api.py"
+                    api_script_path = os.path.join(directory_path, "../api.py")
                     subprocess.Popen(["python", api_script_path, selected_website_name])
 
                 else:
