@@ -3,6 +3,7 @@ import re  # Importation du module re pour utiliser les expressions régulières
 import requests  # Importation du module requests pour effectuer des requêtes HTTP
 import shutil  # Importation du module shutil pour effectuer des opérations de copie de fichiers
 import subprocess # Importation du module subprocess pour exécuter des commandes système et des scripts externes
+import webbrowser # Importation du module webbrowser pour ouvrir le browser depuis le code
 
 # Définition de la fonction principale du script
 def main():
@@ -110,6 +111,7 @@ def main():
                     # Lancement de l'API Flask depuis le script
                     api_script_path = os.path.join(directory_path, "../api.py")
                     subprocess.Popen(["python", api_script_path, selected_website_name])
+                    webbrowser.open('http://localhost:5000')
                 else:
                     print("Choix invalide. Veuillez réessayer.")
             else:
