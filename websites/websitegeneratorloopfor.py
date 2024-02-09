@@ -19,6 +19,8 @@ def main():
         websites_data = response_websites.json()
         # Analyse les données JSON récupérées sur les détails spécifiques des sites
         website_data = response_website.json()
+        #print(response_website.json())
+        #print(response_websites.json())
 
 
         if len(sys.argv) > 1 :  # Vérifie si des arguments sont passés en ligne de commande

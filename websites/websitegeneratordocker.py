@@ -19,7 +19,9 @@ def main():
         websites_data = response_websites.json()
         # Analyse les données JSON récupérées sur les détails spécifiques des sites
         website_data = response_website.json()
-        
+        #print(response_website.json())
+        #print(response_websites.json())
+
         if len(sys.argv) > 1 :  # Vérifie si des arguments sont passés en ligne de commande
             choice = sys.argv[1]  # Récupère le premier argument passé en ligne de commande
         else:
@@ -110,7 +112,7 @@ def main():
                     # Construction de l'image Docker
                     subprocess.run(["docker", "build", "-t", f"docker_{selected_website_name.replace('.', '_')}", "."])
                     # Lancement du conteneur Docker
-                    subprocess.run(["docker", "run", "-p", f"5000:500{choice}", f"docker_{selected_website_name.replace('.', '_')}"])
+                    subprocess.run(["docker", "run", "-d", "-p", f"500{choice}:5000", f"docker_{selected_website_name.replace('.', '_')}"])
                     # Ouverture automatique du browser
                     webbrowser.open(f"http://localhost:500{choice}")
 

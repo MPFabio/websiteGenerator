@@ -9,7 +9,3 @@ COPY . .
 
 # Installation des dépendances Python définies dans le fichier requirements.txt
 RUN pip install --no-cache-dir requests flask
-
-# Commande par défaut à exécuter lorsque le conteneur démarre
-CMD ["python", "api.py"]
-

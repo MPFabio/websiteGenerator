@@ -18,7 +18,9 @@ def main():
         websites_data = response_websites.json()
         # Analyse les données JSON récupérées sur les détails spécifiques des sites
         website_data = response_website.json()
-        
+        #print(response_website.json())
+        #print(response_websites.json())
+
         # Affiche un message invitant l'utilisateur à choisir un site parmi ceux disponibles
         print("Choisissez l'un des sites suivants :")
         
