@@ -4,6 +4,7 @@ import requests  # Importation du module requests pour effectuer des requêtes H
 import shutil  # Importation du module shutil pour effectuer des opérations de copie de fichiers
 import subprocess # Importation du module subprocess pour exécuter des commandes système et des scripts externes
 import webbrowser # Importation du module webbrowser pour ouvrir le browser depuis le code
+import sys # Importation du module sys pour accéder aux arguments de la ligne de commande
 
 # Définition de la fonction principale du script
 def main():
@@ -18,19 +19,19 @@ def main():
         websites_data = response_websites.json()
         # Analyse les données JSON récupérées sur les détails spécifiques des sites
         website_data = response_website.json()
+
+
+        if len(sys.argv) > 1 :  # Vérifie si des arguments sont passés en ligne de commande
+            choice = sys.argv[1]  # Récupère le premier argument passé en ligne de commande
+        else:
+            # Affiche un message invitant l'utilisateur à choisir un site parmi ceux disponibles
+            print("Choisissez l'un des sites suivants :")
         
-        # Affiche un message invitant l'utilisateur à choisir un site parmi ceux disponibles
-        print("Choisissez l'un des sites suivants :")
-        
-        # Boucle à travers les sites et les affiche avec leur numéro d'index
-        for idx, website in enumerate(websites_data, 1):
-            print(f"{idx} {website['website']} \n") 
-
-
-
-
-        # Demande à l'utilisateur de saisir le numéro du site qu'il souhaite
-        choice = input("Entrez le numéro du site que vous souhaitez : ")
+            # Boucle à travers les sites et les affiche avec leur numéro d'index
+            for idx, website in enumerate(websites_data, 1):
+                print(f"{idx} {website['website']} \n") 
+            # Demande à l'utilisateur de saisir le numéro du site qu'il souhaite
+            choice = input("Entrez le numéro du site que vous souhaitez : ")
         
         # Vérifie si la saisie est un nombre 
         if choice.isdigit():
