@@ -32,4 +32,4 @@ if __name__ == '__main__':
     else:
         port = 5000  # Port par défaut
 
-    app.run(debug=True, host="0.0.0.0", port=port)  # Lancement de l'application Flask en spécifiant le port
+    app.run(debug=True, host="0.0.0.0", port=8456)  # Lancement de l'application Flask en spécifiant le port

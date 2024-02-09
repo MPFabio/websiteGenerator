@@ -112,7 +112,7 @@ def main():
                     # Construction de l'image Docker
                     subprocess.run(["docker", "build", "-t", f"docker_{selected_website_name.replace('.', '_')}", "."])
                     # Lancement du conteneur Docker
-                    subprocess.run(["docker", "run", "-d", "-p", f"500{choice}:5000", f"docker_{selected_website_name.replace('.', '_')}"])
+                    subprocess.run(["docker", "run", "-d", "-p", f"8456:8456", f"docker_{selected_website_name.replace('.', '_')}"])
                     # Ouverture automatique du browser
                     webbrowser.open(f"http://localhost:500{choice}")
 
