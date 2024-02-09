@@ -25,6 +25,11 @@ def serve_static(filename):
     # Envoie le fichier statique demandé depuis le répertoire des fichiers statiques
     return send_from_directory(static_dir, filename)
 
-
 if __name__ == '__main__':
-    app.run(debug=True)  # Lancement de l'application Flask en mode debug si le script est exécuté directement
+    # Vérifie si un port est spécifié en tant qu'argument en ligne de commande
+    if len(sys.argv) > 2:
+        port = int(sys.argv[2])  # Utilise le deuxième argument en tant que numéro de port
+    else:
+        port = 5000  # Port par défaut
+
+    app.run(debug=True, port=port)  # Lancement de l'application Flask en spécifiant le port
