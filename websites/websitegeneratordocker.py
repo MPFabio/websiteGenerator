@@ -114,7 +114,7 @@ def main():
                     # Lancement du conteneur Docker
                     subprocess.run(["docker", "run", "-d", "-p", f"8456:8456", f"docker_{selected_website_name.replace('.', '_')}"])
                     # Ouverture automatique du browser
-                    webbrowser.open(f"http://localhost:500{choice}")
+                    webbrowser.open(f"http://localhost:8456")
 
                 else:
                     print("Le fichier source n'existe pas.")
