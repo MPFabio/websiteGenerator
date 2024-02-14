@@ -113,7 +113,7 @@ def main():
                     # Lancement de l'API Flask depuis le script
                     api_script_path = os.path.join(directory_path, "../api.py")
                     subprocess.Popen(["python", api_script_path, selected_website_name])
-                    webbrowser.open(f'http://localhost:808{choice}')
+                    webbrowser.open(f'http://localhost:5000')
                 else:
                     print("Choix invalide. Veuillez réessayer.")
             else:
